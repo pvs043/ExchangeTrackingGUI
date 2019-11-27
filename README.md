@@ -1,5 +1,5 @@
 # ExchangeTrackingGUI
-This is a Graphical User Interface for Get-MessageTrackingLog command: Message Tracking Log Explorer Tool for Exchange 2016
+This is a Graphical User Interface for Get-MessageTrackingLog PowerShell command: Message Tracking Log Explorer Tool for Exchange 2016
 
 ## How to use it
 1. Install script from PowerShellGallery:

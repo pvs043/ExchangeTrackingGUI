@@ -10,4 +10,4 @@ This is a Graphical User Interface for Get-MessageTrackingLog PowerShell command
 3. Run script: **ExchangeTrackingGUI.ps1**.
 4. Click **[Config]** button and configure parameters. Use FQDN for 'Exchange PS connect' field.
 5. Click **[Save]** button. Configuration will be saved at _"$($env:LOCALAPPDATA)\ExchangeTrackingGUI\Config.json"_ file.
-6. Use **[Search]** button for view results or **[Export]** button for view CSV file.
+6. Use **[Search]** button for view results or **[Export]** button for view and save CSV file.

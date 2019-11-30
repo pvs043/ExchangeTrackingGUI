@@ -27,7 +27,7 @@ install:
 #---------------------------------#
 #      build configuration        #
 #---------------------------------#
-build:
+build_script:
     - ps: |
         Write-Host "Build project" -ForegroundColor Yellow
         Write-Host "Build version : $env:APPVEYOR_BUILD_VERSION"

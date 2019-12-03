@@ -99,3 +99,4 @@ Copy-Item -Path "$PSScriptRoot\README.md" -Destination "$BuildDir\Build\$moduleN
 Copy-Item -Path "$PSScriptRoot\LICENSE" -Destination "$BuildDir\Build\$moduleName\LICENSE" -Force
 Copy-Item -Path "$PSScriptRoot\source\plus-24.png" -Destination "$BuildDir\Build\$moduleName\plus-24.png" -Force
 Copy-Item -Path "$PSScriptRoot\source\minus-24.png" -Destination "$BuildDir\Build\$moduleName\minus-24.png" -Force
+Copy-Item -Path "$PSScriptRoot\tests"-Destination "$BuildDir\Build\$moduleName\tests" -Recurse -Force

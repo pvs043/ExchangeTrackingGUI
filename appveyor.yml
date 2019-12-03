@@ -40,6 +40,8 @@ build_script:
 #    - copy ExchangeTrackingGUI.psm1 "%ProgramFiles%\WindowsPowerShell\Modules\ExchangeTrackingGUI"
 #    - copy ExchangeTrackingGUI.psd1 "%ProgramFiles%\WindowsPowerShell\Modules\ExchangeTrackingGUI"
     - ps: |
+        Get-Location
+        Get-ChildItem
         Import-Module -Name .\ExchangeTrackingGUI.psm1
         Write-Host "...completed!" -ForegroundColor Green
 

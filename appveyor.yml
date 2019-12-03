@@ -36,10 +36,11 @@ build_script:
         Write-Host "Running Build.ps1..." -ForegroundColor Yellow
         . .\Build.ps1
     - cd ..\Build\ExchangeTrackingGUI
-#    - mkdir "%ProgramFiles%\WindowsPowerShell\Modules\ExchangeTrackingGUI"
-#    - copy ExchangeTrackingGUI.psm1 "%ProgramFiles%\WindowsPowerShell\Modules\ExchangeTrackingGUI"
-#    - copy ExchangeTrackingGUI.psd1 "%ProgramFiles%\WindowsPowerShell\Modules\ExchangeTrackingGUI"
+    #- mkdir "%ProgramFiles%\WindowsPowerShell\Modules\ExchangeTrackingGUI"
+    #- copy ExchangeTrackingGUI.psm1 "%ProgramFiles%\WindowsPowerShell\Modules\ExchangeTrackingGUI"
+    #- copy ExchangeTrackingGUI.psd1 "%ProgramFiles%\WindowsPowerShell\Modules\ExchangeTrackingGUI"
     - ps: |
+        Import-Module -Name .\ExchangeTrackingGUI.psm1
         Write-Host "...completed!" -ForegroundColor Green
 
 #---------------------------------#

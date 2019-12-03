@@ -1,6 +1,6 @@
-﻿function Get-MessageTrackingGUI {
-    Add-Type -AssemblyName PresentationFramework
+﻿Add-Type -AssemblyName PresentationFramework
 
+function Get-MessageTrackingGUI {
     $Icon = Initialize-MTGIcon
 
     # Configuration

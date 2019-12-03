@@ -16,6 +16,6 @@ Describe "Create Icon Test" {
      it "Save Configuration success" {
         $Config = Get-MTGConfiguration
         Save-MTGConfiguration($Config)
-        "$($env:LOCALAPPDATA)\ExchangeTrackingGUI\Config.json" | Should Be Exist
+        Get-Item -Path "$($env:LOCALAPPDATA)\ExchangeTrackingGUI\Config.json" -ErrorAction SilentlyContinue | Should Not Be $null
      }
  }

@@ -3,19 +3,6 @@
 function Get-MessageTrackingGUI {
     $Icon = Initialize-MTGIcon
 
-    # Connect to Exchange 2016
-    function Connect-Exchange {
-        if ($SessionEx) {
-            Remove-PSSession -Session $SessionEx
-        }
-
-        $Uri = "http://" + $Config.PSConnect + "/PowerShell/"
-        $SessionEx = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri $Uri -Authentication Kerberos -ErrorAction SilentlyContinue
-        if ($SessionEx) {
-            Import-PSSession $SessionEx -DisableNameChecking -AllowClobber
-        }
-    }
-
     # Visual change PSCommandText field
     function Set-PSCommandText
     {
@@ -41,20 +28,6 @@ function Get-MessageTrackingGUI {
             $PSCommand.Text += '-End "' + ($End.Month).ToString('00') + '/' + ($End.Day).ToString('00') + '/' + $End.Year + ' ' + $EndHour.SelectedValue + ':' + $EndMin.SelectedValue + '"'
         }
         $PSCommand.Text = $PSCommand.Text.TrimEnd(' ')
-    }
-
-    function Get-TrackingLog {
-        if ($CBServers.IsChecked) {
-            $Fields = ""
-            $Config.Fields.F | ForEach-Object {
-                $Fields += $_ + ','
-            }
-            $Fields = $Fields.TrimEnd(',')
-            $Servers.SelectedItems | ForEach-Object {
-                $Command = $PSCommand.Text + ' -Server "' + $_.ToString() + '" | Select-Object ' + $Fields
-                Invoke-Expression -Command $Command
-            }
-        }
     }
 
     function Set-ConfigForm {
@@ -222,7 +195,7 @@ function Get-MessageTrackingGUI {
         if ($PSConnect.Text) {
             if ($Config.PSConnect -ne $PSConnect.Text) {
                 $Config.PSConnect = $PSConnect.Text
-                Connect-Exchange
+                Connect-MTGExchange
             }
         }
         else {
@@ -410,7 +383,7 @@ function Get-MessageTrackingGUI {
 
     # Buttons
     $BTSearch.Add_Click({
-        Get-TrackingLog | Out-GridView
+        Get-MTGTrackingLog | Out-GridView
     })
     $BTExport.Add_Click({
         $Path = "$($env:LOCALAPPDATA)\ExchangeTrackingGUI"
@@ -418,7 +391,7 @@ function Get-MessageTrackingGUI {
             $null = New-Item $Path -ItemType Directory
         }
         $File = "$Path\Export.csv"
-        Get-TrackingLog | ConvertTo-Csv -NoTypeInformation > $File
+        Get-MTGTrackingLog | ConvertTo-Csv -NoTypeInformation > $File
         Invoke-Item $File
     })
     $BTConfig.Add_Click({
@@ -437,7 +410,7 @@ function Get-MessageTrackingGUI {
     Set-ConfigForm
 
     # Connect to Exchange 2016
-    Connect-Exchange
+    Connect-MTGExchange
 
     # Show Main form
     $XMLForm.ShowDialog() | Out-Null

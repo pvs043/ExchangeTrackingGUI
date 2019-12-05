@@ -1,7 +1,7 @@
 $ModuleName     = "ExchangeTrackingGUI"
 $ModuleGuid     = "7dbaff80-3574-4797-9e57-339e228a3eab"
 $Year           = (Get-Date).Year
-$ModuleVersion  = "1.0.0"
+$ModuleVersion  = "0.9.0"
 $ReleaseNotes  = "
 * Initial release
 "

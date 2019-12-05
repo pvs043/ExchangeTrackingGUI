@@ -22,7 +22,7 @@ Official repository - latest module version and download count.
 ## How to use it
 1. Install module from PowerShellGallery:
   ```powershell
-  Install-Script -Name ExchangeTrackingGUI
+  Install-Module -Name ExchangeTrackingGUI
   ```
 2. Start PowerShell console from an account with administrative rights to Exchange.
 3. Run Command **Get-MessageTrackingGUI**.

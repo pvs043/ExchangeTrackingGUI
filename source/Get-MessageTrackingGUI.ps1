@@ -3,87 +3,6 @@
 function Get-MessageTrackingGUI {
     $Icon = Initialize-MTGIcon
 
-    # Visual change PSCommandText field
-    function Set-PSCommandText
-    {
-        $PSCommand.Text = "Get-MessageTrackingLog "
-        if ($CBRecipients.IsChecked -and $Recipients.Text) {
-            $PSCommand.Text += '-Recipients:' + $Recipients.Text + ' '
-        }
-        if ($CBSender.IsChecked -and $Sender.Text) {
-            $PSCommand.Text += '-Sender "' + $Sender.Text + '" '
-        }
-        if ($CBEventID.IsChecked) {
-            $PSCommand.Text += '-EventId "' + $EventID.Text.ToString() + '" '
-        }
-        if ($CBSubject.IsChecked -and $Subject.Text) {
-            $PSCommand.Text += '-MessageSubject "' + $Subject.Text + '" '
-        }
-        if ($CBStart.IsChecked) {
-            $Start = $StartDate.SelectedDate
-            $PSCommand.Text += '-Start "' + ($Start.Month).ToString('00') + '/' + ($Start.Day).ToString('00') + '/' + $Start.Year + ' ' + $StartHour.SelectedValue + ':' + $StartMin.SelectedValue + '" '
-        }
-        if ($CBEnd.IsChecked) {
-            $End = $EndDate.SelectedDate
-            $PSCommand.Text += '-End "' + ($End.Month).ToString('00') + '/' + ($End.Day).ToString('00') + '/' + $End.Year + ' ' + $EndHour.SelectedValue + ':' + $EndMin.SelectedValue + '"'
-        }
-        $PSCommand.Text = $PSCommand.Text.TrimEnd(' ')
-    }
-
-    function Set-ConfigForm {
-        $PSConnect.Text = $Config.PSConnect
-
-        $ConfigServers.Items.Clear()
-        $Config.Servers | ForEach-Object {
-            $ConfigServers.Items.Add($_.Name)
-        } | Out-Null
-        $ConfigEventID.Items.Clear()
-        $Config.EventID | ForEach-Object {
-            $ConfigEventID.Items.Add($_.ID)
-        } | Out-Null
-        $ConfigFields.Items.Clear()
-        $Config.Fields | ForEach-Object {
-            $ConfigFields.Items.Add($_.F)
-        } | Out-Null
-    }
-
-    function Set-MainForm {
-        $Servers.Items.Clear()
-        $Config.Servers | ForEach-Object {
-            $Servers.Items.Add($_.Name)
-        } | Out-Null
-        $Servers.SelectAll()
-
-        $EventID.Items.Clear()
-        $Config.EventID | ForEach-Object {
-            $EventID.Items.Add($_.ID)
-        } | Out-Null
-        $EventID.Text = $Config.EventID[0].ID
-
-        # Setup Date and Time
-        $StartDate.SelectedDate = Get-Date
-        $EndDate.SelectedDate = Get-Date
-
-        0..23 | ForEach-Object {
-            $Hour = $_.ToString('00')
-            $StartHour.Items.Add($Hour)
-            $EndHour.Items.Add($Hour)
-        } | Out-Null
-        $StartHour.SelectedValue = (((Get-Date).AddMinutes(-10)).Hour).ToString('00')
-        $EndHour.SelectedValue   = ((Get-Date).Hour).ToString('00')
-
-        0..59 | ForEach-Object {
-            $Min = $_.ToString('00')
-            $StartMin.Items.Add($Min)
-            $EndMin.Items.Add($Min)
-        } | Out-Null
-        $StartMin.SelectedValue = (((Get-Date).AddMinutes(-10)).Minute).ToString('00')
-        $EndMin.SelectedValue   = ((Get-Date).Minute).ToString('00')
-
-        # Construct PSCommand
-        Set-PSCommandText
-    }
-
     #region Main form
     [xml]$MainForm = @"
 <Window
@@ -215,7 +134,7 @@ function Get-MessageTrackingGUI {
         }
         Save-MTGConfiguration($Config)
         $XMLConfig.Visibility = "Hidden"
-        Set-MainForm
+        Update-MainForm
     })
 
     # Add server to list
@@ -306,7 +225,7 @@ function Get-MessageTrackingGUI {
     })
     #endregion Setup Config form
 
-    #region Main form
+    #region Setup Main form
     # Recipients
     $CBRecipients.Add_Click({
         if ($CBRecipients.IsChecked) {
@@ -315,11 +234,11 @@ function Get-MessageTrackingGUI {
         else {
             $Recipients.IsEnabled = $false
         }
-        Set-PSCommandText
+        Update-MTGCommandText
     })
     $Recipients.Add_KeyUp({
         if ($_.Key -eq "Escape") { $Recipients.Clear() }
-        Set-PSCommandText
+        Update-MTGCommandText
     })
 
     # Sender
@@ -330,11 +249,11 @@ function Get-MessageTrackingGUI {
         else {
             $Sender.IsEnabled = $false
         }
-        Set-PSCommandText
+        Update-MTGCommandText
     })
     $Sender.Add_KeyUp({
         if ($_.Key -eq "Escape") { $Sender.Clear() }
-        Set-PSCommandText
+        Update-MTGCommandText
     })
 
     # Servers
@@ -355,9 +274,9 @@ function Get-MessageTrackingGUI {
         else {
             $EventID.IsEnabled = $false
         }
-        Set-PSCommandText
+        Update-MTGCommandText
     })
-    $EventID.Add_DropDownClosed({Set-PSCommandText})
+    $EventID.Add_DropDownClosed({Update-MTGCommandText})
 
     # Subject
     $CBSubject.Add_Click({
@@ -367,19 +286,19 @@ function Get-MessageTrackingGUI {
         else {
             $Subject.IsEnabled = $false
         }
-        Set-PSCommandText
+        Update-MTGCommandText
     })
     $Subject.Add_KeyUp({
         if ($_.Key -eq "Escape") { $Subject.Clear() }
-        Set-PSCommandText
+        Update-MTGCommandText
     })
 
-    $StartDate.Add_CalendarClosed({Set-PSCommandText})
-    $StartHour.Add_SelectionChanged({Set-PSCommandText})
-    $StartMin.Add_SelectionChanged({Set-PSCommandText})
-    $EndDate.Add_CalendarClosed({Set-PSCommandText})
-    $EndHour.Add_SelectionChanged({Set-PSCommandText})
-    $EndMin.Add_SelectionChanged({Set-PSCommandText})
+    $StartDate.Add_CalendarClosed({Update-MTGCommandText})
+    $StartHour.Add_SelectionChanged({Update-MTGCommandText})
+    $StartMin.Add_SelectionChanged({Update-MTGCommandText})
+    $EndDate.Add_CalendarClosed({Update-MTGCommandText})
+    $EndHour.Add_SelectionChanged({Update-MTGCommandText})
+    $EndMin.Add_SelectionChanged({Update-MTGCommandText})
 
     # Buttons
     $BTSearch.Add_Click({
@@ -395,19 +314,19 @@ function Get-MessageTrackingGUI {
         Invoke-Item $File
     })
     $BTConfig.Add_Click({
-        Set-ConfigForm
+        Update-ConfigForm
         $XMLConfig.ShowDialog() | Out-Null
     })
-    #endregion Main form
+    #endregion Seup Main form
 
     # Get configuration
     $Config = Get-MTGConfiguration
 
     # Setup main form
-    Set-MainForm
+    Update-MainForm
 
     # Setup config Form
-    Set-ConfigForm
+    Update-ConfigForm
 
     # Connect to Exchange 2016
     Connect-MTGExchange

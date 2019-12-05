@@ -1,6 +1,6 @@
 Describe "PSScriptAnalyzer Test" {
     Context 'PSScriptAnalyzer Standard Rules' {
-        $analysis = Invoke-ScriptAnalyzer -Path  '.\Get-MessageTrackingGUI.psm1'
+        $analysis = Invoke-ScriptAnalyzer -Path  '.\ExchangeTrackingGUI.psm1'
         $scriptAnalyzerRules = Get-ScriptAnalyzerRule
         forEach ($rule in $scriptAnalyzerRules) {
             It "Should pass $rule" {

@@ -17,7 +17,7 @@ This is the development branch with latest changes.
 Official repository - latest module version and download count.
 
 ## Version
-1.0.0
+0.9.0
 
 ## How to use it
 1. Install script from PowerShellGallery:

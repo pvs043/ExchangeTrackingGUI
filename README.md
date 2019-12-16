@@ -17,7 +17,7 @@ This is the development branch with latest changes.
 Official repository - latest module version and download count.
 
 ## Version
-0.9.0
+0.9.1
 
 ## How to use it
 1. Install module from PowerShellGallery:
@@ -26,7 +26,7 @@ Official repository - latest module version and download count.
   ```
 2. Start PowerShell console from an account with administrative rights to Exchange.
 3. Run Command **Get-MessageTrackingGUI**.
-4. Click **[Config]** button and configure parameters. Use FQDN for 'Exchange PS connect' field.
+4. Click **[Config]** button and configure parameters. Use FQDN for 'Exchange PS connect' field. Use **Enter**, **ESC** and **Del** hot keys.
 5. Click **[Save]** button. Configuration will be saved at _"$($env:LOCALAPPDATA)\ExchangeTrackingGUI\Config.json"_ file.
 6. Use **[Search]** button for view results or **[Export]** button for view and save CSV file.
 ## License

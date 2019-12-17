@@ -310,7 +310,7 @@ function Get-MessageTrackingGUI {
             $null = New-Item $Path -ItemType Directory
         }
         $File = "$Path\Export.csv"
-        Get-MTGTrackingLog | ConvertTo-Csv -Delimiter ';' -NoTypeInformation > $File
+        Get-MTGTrackingLog | Export-Csv -Delimiter ';' -NoTypeInformation  -Encoding Default -Path $File
         Invoke-Item $File
     })
     $BTConfig.Add_Click({

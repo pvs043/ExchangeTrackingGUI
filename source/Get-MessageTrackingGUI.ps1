@@ -7,7 +7,7 @@ function Get-MessageTrackingGUI {
     [xml]$MainForm = @"
 <Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        Title="Exchange tracking Log" Height="430" Width="444" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Exchange tracking Log" Height="568" Width="444" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Recipients" HorizontalAlignment="Left" Margin="20,14,0,0" VerticalAlignment="Top" Width="65"/>
         <CheckBox Name="CBRecipients" HorizontalAlignment="Left" Margin="90,20,0,0" VerticalAlignment="Top" Width="21"/>
@@ -17,30 +17,30 @@ function Get-MessageTrackingGUI {
         <TextBox Name="Sender" HorizontalAlignment="Left" Height="23" Margin="116,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="201" IsEnabled="False"/>
         <Label Content="Servers" HorizontalAlignment="Left" Margin="20,74,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.481,0.962"/>
         <CheckBox Name="CBServers" HorizontalAlignment="Left" Margin="90,81,0,0" VerticalAlignment="Top" Width="21" IsChecked="True"/>
-        <ListBox Name="Servers" HorizontalAlignment="Left" Height="50" Margin="116,77,0,0" VerticalAlignment="Top" Width="201" SelectionMode="Multiple"/>
-        <Label Content="EventID" HorizontalAlignment="Left" Margin="20,132,0,0" VerticalAlignment="Top" Width="53"/>
-        <CheckBox Name="CBEventID" HorizontalAlignment="Left" Margin="90,139,0,0" VerticalAlignment="Top" Width="21"/>
-        <ComboBox Name="EventID" HorizontalAlignment="Left" Margin="116,135,0,0" VerticalAlignment="Top" Width="201" IsEnabled="False"/>
-        <Label Content="Subject" HorizontalAlignment="Left" Margin="20,162,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.154"/>
-        <CheckBox Name="CBSubject" HorizontalAlignment="Left" Margin="90,169,0,0" VerticalAlignment="Top" Width="21"/>
-        <TextBox Name="Subject" HorizontalAlignment="Left" Height="23" Margin="116,165,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="201" IsEnabled="False"/>
-        <Label Content="Start" HorizontalAlignment="Left" Margin="20,197,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.158,-0.385"/>
-        <CheckBox Name="CBStart" HorizontalAlignment="Left" Margin="90,204,0,0" VerticalAlignment="Top" Width="21" IsChecked="True"/>
-        <DatePicker Name="StartDate" HorizontalAlignment="Left" Margin="116,199,0,0" VerticalAlignment="Top" Width="102"/>
-        <ComboBox Name="StartHour" HorizontalAlignment="Left" Margin="225,200,0,0" VerticalAlignment="Top" Width="41"/>
-        <Label Content=":" HorizontalAlignment="Left" Margin="265,198,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="StartMin" HorizontalAlignment="Left" Margin="276,200,0,0" VerticalAlignment="Top" Width="41"/>
-        <Label Content="End" HorizontalAlignment="Left" Margin="20,228,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.158,-0.385"/>
-        <CheckBox Name="CBEnd" HorizontalAlignment="Left" Margin="90,234,0,0" VerticalAlignment="Top" Width="21" IsChecked="True"/>
-        <DatePicker Name="EndDate" HorizontalAlignment="Left" Margin="116,230,0,0" VerticalAlignment="Top" Width="102"/>
-        <ComboBox Name="EndHour" HorizontalAlignment="Left" Margin="225,231,0,0" VerticalAlignment="Top" Width="41"/>
-        <Label Content=":" HorizontalAlignment="Left" Margin="265,228,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="EndMin" HorizontalAlignment="Left" Margin="276,231,0,0" VerticalAlignment="Top" Width="41"/>
-        <Label Content="Exchange Management Shell Command (one server):" HorizontalAlignment="Left" Margin="20,260,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.053,0.615"/>
-        <TextBox Name="PSCommand" HorizontalAlignment="Left" Height="80" Margin="25,286,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="380" IsReadOnly="True"/>
+        <ListBox Name="Servers" HorizontalAlignment="Left" Height="184" Margin="116,77,0,0" VerticalAlignment="Top" Width="201" SelectionMode="Multiple"/>
+        <Label Content="EventID" HorizontalAlignment="Left" Margin="20,270,0,0" VerticalAlignment="Top" Width="53"/>
+        <CheckBox Name="CBEventID" HorizontalAlignment="Left" Margin="90,277,0,0" VerticalAlignment="Top" Width="21"/>
+        <ComboBox Name="EventID" HorizontalAlignment="Left" Margin="116,274,0,0" VerticalAlignment="Top" Width="201" IsEnabled="False"/>
+        <Label Content="Subject" HorizontalAlignment="Left" Margin="20,300,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.615,0.154"/>
+        <CheckBox Name="CBSubject" HorizontalAlignment="Left" Margin="90,307,0,0" VerticalAlignment="Top" Width="21"/>
+        <TextBox Name="Subject" HorizontalAlignment="Left" Height="23" Margin="116,303,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="201" IsEnabled="False"/>
+        <Label Content="Start" HorizontalAlignment="Left" Margin="20,335,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.158,-0.385"/>
+        <CheckBox Name="CBStart" HorizontalAlignment="Left" Margin="90,342,0,0" VerticalAlignment="Top" Width="21" IsChecked="True"/>
+        <DatePicker Name="StartDate" HorizontalAlignment="Left" Margin="116,337,0,0" VerticalAlignment="Top" Width="102"/>
+        <ComboBox Name="StartHour" HorizontalAlignment="Left" Margin="225,338,0,0" VerticalAlignment="Top" Width="41"/>
+        <Label Content=":" HorizontalAlignment="Left" Margin="265,337,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="StartMin" HorizontalAlignment="Left" Margin="276,338,0,0" VerticalAlignment="Top" Width="41"/>
+        <Label Content="End" HorizontalAlignment="Left" Margin="20,366,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.158,-0.385"/>
+        <CheckBox Name="CBEnd" HorizontalAlignment="Left" Margin="90,372,0,0" VerticalAlignment="Top" Width="21" IsChecked="True"/>
+        <DatePicker Name="EndDate" HorizontalAlignment="Left" Margin="116,368,0,0" VerticalAlignment="Top" Width="102"/>
+        <ComboBox Name="EndHour" HorizontalAlignment="Left" Margin="225,368,0,0" VerticalAlignment="Top" Width="41"/>
+        <Label Content=":" HorizontalAlignment="Left" Margin="265,366,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="EndMin" HorizontalAlignment="Left" Margin="276,368,0,0" VerticalAlignment="Top" Width="41"/>
+        <Label Content="Exchange Management Shell Command (one server):" HorizontalAlignment="Left" Margin="20,398,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.053,0.615"/>
+        <TextBox Name="PSCommand" HorizontalAlignment="Left" Height="80" Margin="25,424,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="380" IsReadOnly="True"/>
         <Button Name="BTSearch" Content="Search" HorizontalAlignment="Left" Margin="335,16,0,0" VerticalAlignment="Top" Width="70" Height="54"/>
-        <Button Name="BTExport" Content="Export" HorizontalAlignment="Left" Margin="335,77,0,0" VerticalAlignment="Top" Width="70" Height="50"/>
-        <Button Name="BTConfig" Content="Config" HorizontalAlignment="Left" Margin="335,231,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
+        <Button Name="BTExport" Content="Export" HorizontalAlignment="Left" Margin="335,77,0,0" VerticalAlignment="Top" Width="70" Height="54"/>
+        <Button Name="BTConfig" Content="Config" HorizontalAlignment="Left" Margin="335,368,0,0" VerticalAlignment="Top" Width="70" Height="22"/>
     </Grid>
 </Window>
 "@
@@ -310,14 +310,14 @@ function Get-MessageTrackingGUI {
             $null = New-Item $Path -ItemType Directory
         }
         $File = "$Path\Export.csv"
-        Get-MTGTrackingLog | ConvertTo-Csv -NoTypeInformation > $File
+        Get-MTGTrackingLog | Export-Csv -Delimiter ';' -NoTypeInformation -Encoding Default -Path $File
         Invoke-Item $File
     })
     $BTConfig.Add_Click({
         Update-ConfigForm
         $XMLConfig.ShowDialog() | Out-Null
     })
-    #endregion Seup Main form
+    #endregion Setup Main form
 
     # Get configuration
     $Config = Get-MTGConfiguration

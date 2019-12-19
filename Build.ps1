@@ -1,9 +1,10 @@
 $ModuleName     = "ExchangeTrackingGUI"
 $ModuleGuid     = "7dbaff80-3574-4797-9e57-339e228a3eab"
 $Year           = (Get-Date).Year
-$ModuleVersion  = "0.9.0"
+$ModuleVersion  = "0.9.1"
 $ReleaseNotes  = "
-* Initial release
+* Change CSV output format
+* Change Main Form design
 "
 $AllFunctions   = @( Get-ChildItem -Path $PSScriptRoot\source\*.ps1 -ErrorAction SilentlyContinue -Recurse | Sort-Object)
 $BuildDir       = "C:\Projects"
@@ -105,7 +106,7 @@ Set-Content -Path $ManifestFile -Value $ManifestDefinition
 
 # Add artefacts
 Copy-Item -Path "$PSScriptRoot\README.md" -Destination "$BuildDir\Build\$moduleName\README.md" -Force
-Copy-Item -Path "$PSScriptRoot\HISTORY.md" -Destination "$BuildDir\Build\$moduleName\HISTORY.md" -Force
+Copy-Item -Path "$PSScriptRoot\CHANGELOG.md" -Destination "$BuildDir\Build\$moduleName\CHANGELOG.md" -Force
 Copy-Item -Path "$PSScriptRoot\LICENSE" -Destination "$BuildDir\Build\$moduleName\LICENSE" -Force
 Copy-Item -Path "$PSScriptRoot\source\plus-24.png" -Destination "$BuildDir\Build\$moduleName\plus-24.png" -Force
 Copy-Item -Path "$PSScriptRoot\source\minus-24.png" -Destination "$BuildDir\Build\$moduleName\minus-24.png" -Force

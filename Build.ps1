@@ -106,7 +106,7 @@ Set-Content -Path $ManifestFile -Value $ManifestDefinition
 
 # Add artefacts
 Copy-Item -Path "$PSScriptRoot\README.md" -Destination "$BuildDir\Build\$moduleName\README.md" -Force
-Copy-Item -Path "$PSScriptRoot\HISTORY.md" -Destination "$BuildDir\Build\$moduleName\HISTORY.md" -Force
+Copy-Item -Path "$PSScriptRoot\CHANGELOG.md" -Destination "$BuildDir\Build\$moduleName\CHANGELOG.md" -Force
 Copy-Item -Path "$PSScriptRoot\LICENSE" -Destination "$BuildDir\Build\$moduleName\LICENSE" -Force
 Copy-Item -Path "$PSScriptRoot\source\plus-24.png" -Destination "$BuildDir\Build\$moduleName\plus-24.png" -Force
 Copy-Item -Path "$PSScriptRoot\source\minus-24.png" -Destination "$BuildDir\Build\$moduleName\minus-24.png" -Force

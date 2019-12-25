@@ -27,7 +27,7 @@ Official repository - latest module version and download count.
 2. Start PowerShell console from an account with administrative rights to Exchange.
 3. Run Command **Get-MessageTrackingGUI**.
 4. Click **[Config]** button and configure parameters. Use FQDN for 'Exchange PS connect' field. Use **Enter**, **ESC** and **Del** hot keys.
-5. Click **[Save]** button. Configuration will be saved at _<span style="color:green">$"($env:LOCALAPPDATA)\ExchangeTrackingGUI\Config.json"</span>_ file.
+5. Click **[Save]** button. Configuration will be saved at <span style="color:green">_"$env:LOCALAPPDATA)\ExchangeTrackingGUI\Config.json"_</span> file.
 6. Use **[Search]** button for view results or **[Export]** button for view and save CSV file.
 
 ## Screenshots
